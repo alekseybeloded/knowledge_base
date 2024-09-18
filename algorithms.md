@@ -54,11 +54,10 @@ def quick_sort(array):
 
 ## Breadth-First Search
 
-### Граф в виде словаря (модель связей между людьми)
-
 ```python
 from collections import deque
 
+# Граф в виде словаря (модель связей между людьми)
 graph = {
     "you": ["alice", "bob", "claire"],
     "bob": ["anuj", "peggy"],
