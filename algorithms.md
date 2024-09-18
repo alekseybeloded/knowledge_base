@@ -51,3 +51,57 @@ def quick_sort(array):
     greater = [i for i in array[1:] if i > pivot]
     return quick_sort(less) + [pivot] + quick_sort(greater)
 ```
+
+## Breadth-First Search
+
+### Граф в виде словаря (модель связей между людьми)
+
+```python
+from collections import deque
+
+graph = {
+    "you": ["alice", "bob", "claire"],
+    "bob": ["anuj", "peggy"],
+    "alice": ["peggy"],
+    "claire": ["thom", "jonny"],
+    "anuj": [],
+    "peggy": [],
+    "thom": [],
+    "jonny": []
+}
+
+def person_is_seller(person):
+    # Логика проверки, является ли человек продавцом манго (например, если имя заканчивается на 'm')
+    return person[-1] == 'm'
+
+def search(name):
+    # Очередь для проверки (используем очередь для реализации BFS)
+    search_queue = deque()
+    search_queue += graph[name]  # Добавляем всех соседей начального узла в очередь
+    
+    # Массив для отслеживания уже проверенных людей
+    searched = []
+
+    # Пока в очереди есть люди для проверки
+    while search_queue:
+        # Извлекаем первого человека из очереди
+        person = search_queue.popleft()
+        
+        # Проверяем этого человека только в том случае, если его еще не проверяли
+        if person not in searched:
+            # Если этот человек — продавец манго, выводим результат и возвращаем True
+            if person_is_seller(person):
+                print(person + " is a mango seller!")
+                return True
+            else:
+                # Если это не продавец, добавляем его соседей в очередь
+                search_queue += graph[person]
+                # Помечаем этого человека как проверенного
+                searched.append(person)
+    
+    # Если не нашли продавца манго, возвращаем False
+    return False
+
+# Запуск поиска с начальной вершины "you"
+search("you")
+```
