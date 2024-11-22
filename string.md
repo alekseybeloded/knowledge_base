@@ -2,213 +2,338 @@
 
 ## Methods
 
-* ### str.lower()
+* ### .capitalize()
 
-Преобразует строку в нижний регистр.  
-Пример:
+Преобразует первый символ строки в верхний регистр, остальные символы — в нижний.
 
 ```python
-s = "Hello World"
-print(s.lower())  # "hello world"
+text = "hello world"
+print(text.capitalize())  # "Hello world"
 ```
 
-* ### str.upper()
+* ### .casefold()
 
-Преобразует строку в верхний регистр.  
-Пример:
+Приводит строку к нижнему регистру, оптимизированному для сравнения, нечувствительного к регистру.
 
 ```python
-s = "Hello World"
-print(s.upper())  # "HELLO WORLD"
+text = "Straße"
+print(text.casefold())  # "strasse"
 ```
 
-* ### str.capitalize()
+* ### .center(width, fillchar=' ')
 
-Преобразует первую букву строки в верхний регистр, остальные в нижний.  
-Пример:
+Выравнивает строку по центру, добавляя символы fillchar с обеих сторон.
 
 ```python
-s = "hello world"
-print(s.capitalize())  # "Hello world"
+text = "hello"
+print(text.center(10, '-'))  # "--hello---"
 ```
 
-* ### str.title()
+* ### .count(sub, start=0, end=len(string))
 
-Преобразует первую букву каждого слова в верхний регистр.  
-Пример:
+Считает количество вхождений подстроки sub в строке.
 
 ```python
-s = "hello world"
-print(s.title())  # "Hello World"
+text = "banana"
+print(text.count("a"))  # 3
 ```
 
-* ### str.strip()
+* ### .encode(encoding='utf-8', errors='strict')
 
-Удаляет пробелы (или другие символы) в начале и в конце строки.  
-Пример:  
+Кодирует строку в указанный формат (по умолчанию UTF-8).  
 
 ```python
-s = "  hello world  "
-print(s.strip())  # "hello world"
+text = "hello"
+print(text.encode())  # b'hello'
 ```
 
-* ### str.lstrip()
+* ### .endswith(suffix, start=0, end=len(string))
 
-Удаляет пробелы (или другие символы) в начале строки.  
-Пример:  
+Проверяет, заканчивается ли строка указанным suffix.  
 
 ```python
-s = "  hello world  "
-print(s.lstrip())  # "hello world  "
+text = "example.txt"
+print(text.endswith(".txt"))  # True
 ```
 
-* ### str.rstrip()
+* ### .expandtabs(tabsize=8)
 
-Удаляет пробелы (или другие символы) в конце строки.  
-Пример:  
+Заменяет символы табуляции (\t) пробелами, используя указанный размер табуляции.  
 
 ```python
-s = "  hello world  "
-print(s.rstrip())  # "  hello world"
+text = "1\t2\t3"
+print(text.expandtabs(4))  # "1   2   3"
 ```
 
-* ### str.replace(old, new)
+* ### .find(sub, start=0, end=len(string))
 
-Заменяет все вхождения подстроки old на new.  
-Пример:  
+Возвращает индекс первого вхождения подстроки sub. Если подстрока не найдена, возвращает -1.  
 
 ```python
-s = "Hello World"
-print(s.replace("World", "Python"))  # "Hello Python"
+text = "hello world"
+print(text.find("world"))  # 6
 ```
 
-* ### str.find(sub)
+* ### .format(*args, **kwargs)
 
-Возвращает индекс первого вхождения подстроки sub. Возвращает -1, если подстрока не найдена.  
-Пример:  
+Используется для форматирования строки.  
 
 ```python
-s = "Hello World"
-print(s.find("World"))  # 6
+template = "Hello, {}!"
+print(template.format("Alice"))  # "Hello, Alice!"
 ```
 
-* ### str.count(sub)
+* ### .format_map(mapping)
 
-Возвращает количество вхождений подстроки sub.  
-Пример:  
+Форматирует строку, используя словарь для подстановки значений.  
 
 ```python
-s = "banana"
-print(s.count("a"))  # 3
+data = {"name": "Alice", "age": 25}
+template = "Name: {name}, Age: {age}"
+print(template.format_map(data))  # "Name: Alice, Age: 25"
 ```
 
-* ### str.startswith(prefix)
+* ### .index(sub, start=0, end=len(string))
 
-Проверяет, начинается ли строка с подстроки prefix.  
-Пример:  
+Возвращает индекс первого вхождения подстроки sub. Если подстрока не найдена, вызывает исключение ValueError.  
 
 ```python
-s = "Hello World"
-print(s.startswith("Hello"))  # True
+text = "hello world"
+print(text.index("world"))  # 6
 ```
 
-* ### str.endswith(suffix)
+* ### .isalnum()
 
-Проверяет, заканчивается ли строка подстрокой suffix.  
-Пример:  
+Возвращает True, если строка состоит только из буквенно-цифровых символов и не пуста.  
 
 ```python
-s = "Hello World"
-print(s.endswith("World"))  # True
+text = "Hello123"
+print(text.isalnum())  # True
 ```
 
-* ### str.isdigit()
+* ### .isalpha()
 
-Проверяет, состоит ли строка только из цифр.  
-Пример:  
+Возвращает True, если строка состоит только из буквенных символов.  
 
 ```python
-s = "12345"
-print(s.isdigit())  # True
+text = "Hello"
+print(text.isalpha())  # True
 ```
 
-* ### str.isalpha()
+* ### .isascii()
 
-Проверяет, состоит ли строка только из букв.  
-Пример:  
+Возвращает True, если строка содержит только ASCII-символы.  
 
 ```python
-s = "Hello"
-print(s.isalpha())  # True
+text = "Hello!"
+print(text.isascii())  # True
 ```
 
-* ### str.isalnum()
+* ### .isdigit()
 
-Проверяет, состоит ли строка только из букв и цифр.  
-Пример:  
+Возвращает True, если строка состоит только из цифр.  
 
 ```python
-s = "Hello123"
-print(s.isalnum())  # True
+text = "123"
+print(text.isdigit())  # True
 ```
 
-* ### str.split(delimiter)
+* ### .islower()
 
-Разбивает строку на список подстрок по разделителю delimiter.  
-Пример:  
+Возвращает True, если все символы строки в нижнем регистре.  
 
 ```python
-s = "Hello,World,Python"
-print(s.split(","))  # ["Hello", "World", "Python"]
+text = "hello"
+print(text.islower())  # True
 ```
 
-* ### str.join(iterable)
+* ### .isupper()
 
-Соединяет элементы iterable (список, кортеж и т.д.) в строку, используя строку str как разделитель.  
-Пример:  
+Возвращает True, если все символы строки в верхнем регистре.  
 
 ```python
-s = "-"
-words = ["Hello", "World", "Python"]
-print(s.join(words))  # "Hello-World-Python"
+text = "HELLO"
+print(text.isupper())  # True
 ```
 
-* ### str.zfill(width)
+* ### .isspace()
 
-Заполняет строку нулями слева до длины width.  
-Пример:  
+Возвращает True, если строка состоит только из пробельных символов.  
 
 ```python
-s = "42"
-print(s.zfill(5))  # "00042"
+text = "   "
+print(text.isspace())  # True
 ```
 
-* ### str.center(width)
+* ### .istitle()
 
-Выравнивает строку по центру, добавляя пробелы до длины width.  
-Пример:  
+Возвращает True, если строка оформлена как заголовок (каждое слово начинается с заглавной буквы).  
 
 ```python
-s = "Hello"
-print(s.center(10))  # "  Hello   "
+text = "Hello World"
+print(text.istitle())  # True
 ```
 
-* ### str.ljust(width)
+* ### .join(iterable)
 
-Выравнивает строку по левому краю, добавляя пробелы до длины width.  
-Пример:  
+Объединяет элементы последовательности iterable, вставляя между ними строку.  
 
 ```python
-s = "Hello"
-print(s.ljust(10))  # "Hello     "
+separator = ", "
+items = ["apple", "banana", "cherry"]
+print(separator.join(items))  # "apple, banana, cherry"
 ```
 
-* ### str.rjust(width)
+* ### .ljust(width, fillchar=' ')
 
-Выравнивает строку по правому краю, добавляя пробелы до длины width.  
-Пример:  
+Выравнивает строку влево, добавляя символы fillchar справа.  
 
 ```python
-s = "Hello"
-print(s.rjust(10))  # "     Hello"
+text = "hello"
+print(text.ljust(10, '-'))  # "hello-----"
+```
+
+### .lower()
+
+Приводит строку к нижнему регистру.
+
+```python
+text = "HELLO"
+print(text.lower())  # "hello"
+```
+
+### .lstrip(chars=None)
+
+Удаляет указанные символы chars с начала строки.
+
+```python
+text = "   hello"
+print(text.lstrip())  # "hello"
+```
+
+### .partition(separator)
+
+Разделяет строку на три части: до разделителя, сам разделитель и после него.
+
+```python
+text = "key=value"
+print(text.partition("="))  # ('key', '=', 'value')
+```
+
+### .replace(old, new, count=-1)
+
+Заменяет вхождения old на new. Если указан count, заменяет только указанное количество вхождений.
+
+```python
+text = "banana"
+print(text.replace("a", "o", 2))  # "bonona"
+```
+
+### .rfind(sub, start=0, end=len(string))
+
+Возвращает индекс последнего вхождения sub. Если не найдено, возвращает -1.
+
+```python
+text = "hello world"
+print(text.rfind("o"))  # 7
+```
+
+### .rindex(sub, start=0, end=len(string))
+
+Как .rfind(), но вызывает исключение, если подстрока не найдена.
+
+```python
+text = "hello world"
+print(text.rindex("o"))  # 7
+```
+
+### .rjust(width, fillchar=' ')
+
+Выравнивает строку вправо, добавляя символы fillchar слева.
+
+```python
+text = "hello"
+print(text.rjust(10, '-'))  # "-----hello"
+```
+
+### .rstrip(chars=None)
+
+Удаляет указанные символы chars с конца строки.
+
+```python
+text = "hello   "
+print(text.rstrip())  # "hello"
+```
+
+### .split(separator=None, maxsplit=-1)
+
+Разделяет строку на список подстрок, используя указанный разделитель.
+
+```python
+text = "apple,banana,cherry"
+print(text.split(","))  # ['apple', 'banana', 'cherry']
+```
+
+### .splitlines(keepends=False)
+
+Разделяет строку по строкам, сохраняя (True) или удаляя (False) символы переноса строк.
+
+```python
+text = "Line1\nLine2\nLine3"
+print(text.splitlines())  # ['Line1', 'Line2', 'Line3']
+```
+
+### .startswith(prefix, start=0, end=len(string))
+
+Проверяет, начинается ли строка с указанного префикса.
+
+```python
+text = "hello world"
+print(text.startswith("hello"))  # True
+```
+
+### .strip(chars=None)
+
+Удаляет указанные символы chars с начала и конца строки.
+
+```python
+text = "   hello   "
+print(text.strip())  # "hello"
+```
+
+### .swapcase()
+
+Меняет регистр всех символов в строке на противоположный.
+
+```python
+text = "Hello World"
+print(text.swapcase())  # "hELLO wORLD"
+```
+
+### .title()
+
+Преобразует строку в формат заголовка (первая буква каждого слова — заглавная).
+
+```python
+text = "hello world"
+result = text.title()
+print(result)  # Вывод: "Hello World"
+```
+
+### .upper()
+
+Преобразует все символы строки в верхний регистр.
+
+```python
+text = "hello"
+print(text.upper())  # "HELLO"
+```
+
+### .zfill(width)
+
+Дополняет строку нулями слева, чтобы её длина стала равной width.
+
+```python
+text = "42"
+print(text.zfill(5))  # "00042"
 ```
